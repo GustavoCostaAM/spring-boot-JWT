@@ -37,7 +37,7 @@ public class JwtService {
         Date expiration = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(key.getBytes()))
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody()
                 .getExpiration();
 

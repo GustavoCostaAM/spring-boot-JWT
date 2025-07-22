@@ -32,8 +32,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        //gerenciar outras rotas por hole aqui com has role
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/cadastro").permitAll()
+                        .requestMatchers("/api/auth/testeADM").hasRole("ADMIN")
+                        //gerenciar outras rotas por role aqui com has role
                         .anyRequest().authenticated())
                 .sessionManagement(sess ->
                         sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

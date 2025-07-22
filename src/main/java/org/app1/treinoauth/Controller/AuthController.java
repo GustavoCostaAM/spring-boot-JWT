@@ -1,6 +1,7 @@
 package org.app1.treinoauth.Controller;
 
 import org.app1.treinoauth.DTO.AuthRequest;
+import org.app1.treinoauth.Model.Role;
 import org.app1.treinoauth.Model.UserModel;
 import org.app1.treinoauth.Model.UserPrincipal;
 import org.app1.treinoauth.Repository.UserRepository;
@@ -10,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -50,6 +48,11 @@ public class AuthController {
         usuarioAdicionado.setSenha(passwordEncoder.encode(authRequest.getSenha()));
         userRepository.save(usuarioAdicionado);
         return ResponseEntity.status(HttpStatus.OK).body(authRequest);
+    }
+
+    @GetMapping("/testeADM")
+    public ResponseEntity<String> testeADM(){
+        return ResponseEntity.status(HttpStatus.OK).body("req feita com sucesso");
     }
 
 

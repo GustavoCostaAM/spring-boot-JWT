@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, null, userPrincipal.getAuthorities());
 
                 //objeto para aprovar autenticação
-                authToken.setDetails(new WebAuthenticationDetailsSource());
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
                 //as permissões são verificadas pelo spring, pelo authToken
             }
